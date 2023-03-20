@@ -2,13 +2,10 @@ package com.spatialt.ST1.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
-@Table(name = "member") //  table 명
-@Entity(name = "member")
+@Entity
 @Data
 public class Member {
 
@@ -19,4 +16,6 @@ public class Member {
     private String password;
     private Date regDate;
     private String name;
+
+
 }

@@ -1,18 +1,38 @@
 package com.spatialt.ST1.repository;
 
-import jakarta.transaction.Transactional;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.spatialt.ST1.domain.Member;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
-public class MemberRepositoryTest {
+@Transactional
+class MemberRepositoryTest {
+
+    @Autowired MemberRepository memberRepository;
 
     @Test
-    @Transactional
-    public void testMember() {
+    @DisplayName("회원 저장")
+    public void MemberRepositoryTest() throws Exception
+    {
+
+        // given
+        Member member = new Member();
+        member.setId("testId");
+        
+        // when
+
+        String saveId = memberRepository.save(member);
+
+        Member result = memberRepository.find(saveId);
+
+        // then
+        assertEquals(member.getId(), result.getId());
 
     }
+
 }
